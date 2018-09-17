@@ -9,7 +9,7 @@ public class Main2 {
 		
 		System.out.println(jsonH.userToJson(user1));
 		
-		System.out.println(jsonH.jsonToUser("{\"name\":\"Julien ABT\",\"job\":\"Ingénieur Info\"}").getName());
+		System.out.println(jsonH.jsonToUser(jsonH.userToJson(user1)).getFirst_name());
 		
 	}
 

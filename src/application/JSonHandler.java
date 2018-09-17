@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -46,6 +47,13 @@ public class JSonHandler {
 			e.printStackTrace();
 		}
 		return user;
+	}
+	
+	public ArrayList<User> jsonToUsers(String json){
+		
+		
+		
+		return null;
 	}
 }
 
