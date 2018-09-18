@@ -3,27 +3,27 @@ package core;
 import application.JSonHandler;
 import application.User;
 
-public class UserAPIHandler implements ObjectAPIHandler {
+public class UserAPIHandler implements ObjectAPIHandler<User> {
 
 	InteractionAPI api;
 	JSonHandler handler;
 
 	@Override
-	public Object getObject(int id) {
+	public User getObject(int id) {
 		api = new InteractionAPI();
 		handler = new JSonHandler();
 
-		String json = api.get("user/" + id);
+		String json = api.get("users/" + id);
 		User user = handler.jsonToUser(json);
 
 		return user;
 	}
 
 	@Override
-	public String postObject(Object object) {
+	public String postObject(User object) {
 		api = new InteractionAPI();
 		handler = new JSonHandler();
-		User user = (User) object;
+		User user = object;
 
 		String json = handler.userToJson(user);
 		String returnedResponse = api.post("users", json);
@@ -32,7 +32,7 @@ public class UserAPIHandler implements ObjectAPIHandler {
 	}
 
 	@Override
-	public Object getObjects() {
+	public User getObjects() {
 		// TODO Auto-generated method stub
 		return null;
 	}

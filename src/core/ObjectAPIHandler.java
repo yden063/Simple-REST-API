@@ -1,7 +1,7 @@
 package core;
 
-public interface ObjectAPIHandler {
-	Object getObjects();
-	Object getObject(int id);
-	String postObject(Object object);
+public interface ObjectAPIHandler<T> {
+	T getObjects();
+	T getObject(int id);
+	String postObject(T object);
 }

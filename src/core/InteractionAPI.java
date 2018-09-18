@@ -76,6 +76,7 @@ public class InteractionAPI {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 		return response;
 	}
 
