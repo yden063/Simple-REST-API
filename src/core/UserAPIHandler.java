@@ -1,5 +1,7 @@
 package core;
 
+import java.util.List;
+
 import application.JSonHandler;
 import application.User;
 
@@ -32,7 +34,7 @@ public class UserAPIHandler implements ObjectAPIHandler<User> {
 	}
 
 	@Override
-	public User getObjects() {
+	public List<User> getObjects() {
 		// TODO Auto-generated method stub
 		return null;
 	}
