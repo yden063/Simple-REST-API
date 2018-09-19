@@ -1,5 +1,6 @@
 package core;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import application.JSonHandler;
@@ -35,7 +36,13 @@ public class UserAPIHandler implements ObjectAPIHandler<User> {
 
 	@Override
 	public List<User> getObjects() {
-		// TODO Auto-generated method stub
-		return null;
+		List<User> usersList = new ArrayList<User>();
+		api = new InteractionAPI();
+		handler = new JSonHandler();
+
+		String json = api.get("users");
+		usersList = handler.jsonToUsers(json);
+
+		return usersList;
 	}
 }
