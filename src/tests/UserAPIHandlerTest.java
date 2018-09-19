@@ -9,9 +9,11 @@ public class UserAPIHandlerTest {
 		User user = new User("Julien", "Software Engineer");
 
 		// Add a user via a POST request
-		System.out.println(userAPI.postObject(user));
+		//System.out.println(userAPI.postObject(user));
 
-		User user2 = userAPI.getObject(2); // Return a user from the API
+		User [] users = userAPI.getObjects(); // Problem ==> return null
+		if(users == null)
+			System.out.println("null");
 
 	}
 }

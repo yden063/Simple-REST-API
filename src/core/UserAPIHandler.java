@@ -35,13 +35,12 @@ public class UserAPIHandler implements ObjectAPIHandler<User> {
 	}
 
 	@Override
-	public List<User> getObjects() {
-		List<User> usersList = new ArrayList<User>();
+	public User[] getObjects() {
 		api = new InteractionAPI();
 		handler = new JSonHandler();
 
 		String json = api.get("users");
-		usersList = handler.jsonToUsers(json);
+		User []usersList = handler.jsonToUsers(json);
 
 		return usersList;
 	}
