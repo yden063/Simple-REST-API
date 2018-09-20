@@ -1,6 +1,5 @@
 package core;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import application.JSonHandler;
@@ -35,12 +34,12 @@ public class UserAPIHandler implements ObjectAPIHandler<User> {
 	}
 
 	@Override
-	public User[] getObjects() {
+	public List<User> getObjects() {
 		api = new InteractionAPI();
 		handler = new JSonHandler();
 
 		String json = api.get("users");
-		User []usersList = handler.jsonToUsers(json);
+		List<User> usersList = handler.jsonToUsers(json);
 
 		return usersList;
 	}

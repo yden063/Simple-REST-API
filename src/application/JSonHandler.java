@@ -2,68 +2,72 @@ package application;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.List;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JSonHandler {
 	private ObjectMapper objectMapper = new ObjectMapper();
-	
-	public String userToJson(User user){
+
+	public String userToJson(User user) {
 		StringWriter jsonString = new StringWriter();
-		
+
 		try {
 			objectMapper.writeValue(jsonString, user);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return jsonString.toString();
 	}
-	
-	public User jsonToUser(String json){
-		User user;
 
-		json = extractData(json);
-				
+	public User jsonToUser(String json) {
+		User user = null;
+		String retour = extractData(json);
+
 		try {
-			user = objectMapper.readValue(json, User.class);
+			user = objectMapper.readValue(retour, User.class);
 		} catch (IOException e) {
 			e.printStackTrace();
-			user = null;
-		} catch (NullPointerException nullExcep){
+		} catch (NullPointerException nullExcep) {
 			System.out.println("Field 'data' does not exist, generating a new user with no data");
-			user = new User();
 		}
-		
+
 		return user;
 	}
-	
-	public User[] jsonToUsers(String json){
-		User[] list;
-		
-		json = extractData(json);
-		
+
+	public List<User> jsonToUsers(String json) {
+		List<User> list;
+
+		String retour;
+		retour = extractData(json);
+
 		try {
-			list = objectMapper.readValue(json, User[].class);
+			list = objectMapper.readValue(retour, new TypeReference<List<User>>() {});
 		} catch (IOException e) {
 			list = null;
+			e.printStackTrace();
 		}
-		
+
 		return list;
 	}
-	
-	private String extractData(String jsonIn){
-		String jsonOut;
-		
+
+	private String extractData(String jsonIn) {
+		String dataValuestr = null;
+
 		try {
-			jsonOut = objectMapper.readTree(jsonIn).get("data").asText();
+			JsonNode node = objectMapper.readTree(jsonIn);
+			dataValuestr = node.findValue("data").toString();
+
 		} catch (NullPointerException e1) {
 			e1.printStackTrace();
-			jsonOut = "{}";
+			dataValuestr = "{}";
 		} catch (IOException e) {
 			e.printStackTrace();
-			jsonOut = "{}";
 		}
-		
-		return jsonOut;
+
+		return dataValuestr;
 	}
 }

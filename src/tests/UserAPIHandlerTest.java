@@ -9,11 +9,15 @@ public class UserAPIHandlerTest {
 		User user = new User("Julien", "Software Engineer");
 
 		// Add a user via a POST request
-		//System.out.println(userAPI.postObject(user));
+		System.out.println(userAPI.postObject(user));
 
-		User [] users = userAPI.getObjects(); // Problem ==> return null
-		if(users == null)
-			System.out.println("null");
+		User user2 = userAPI.getObject(2);
+		System.out.println(user2.getAvatar());
+
+		// GET multiples objects
+		userAPI.getObjects().forEach(e -> {
+			System.out.println(e.getFirst_name());
+		});
 
 	}
 }
